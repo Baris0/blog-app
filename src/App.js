@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Newests from "./pages/Newests";
+import Trends from "./pages/Trends";
+import MostPopular from "./pages/MostPopular";
+import Navi from "./layouts/Navi";
+import Profile from "./pages/Profile";
+import Notifications from "./pages/Notifications";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div clasName="App">
+        <Navi />
+        <Routes>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/newests" element={<Newests />} />
+          <Route path="/trends" element={<Trends />} />
+          <Route path="/popular" element={<MostPopular />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/notifications" element={<Notifications />} />
+        </Routes> 
+      </div>
+    </BrowserRouter>
   );
 }
 
