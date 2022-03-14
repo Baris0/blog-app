@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Dropdown, Input, Label, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import CategoryService from "../services/categoryService";
 
 const Categories = () => {
+
+  const [categorys, setCagorys] = useState([]);
+
+  useEffect(() => {
+      let categoryService = new CategoryService();
+      categoryService.getCategorys().then((result) => setCagorys(result.data))
+  })
+
   return (
     <div>
       <Container textAlign="left">
@@ -27,9 +36,10 @@ const Categories = () => {
           </Link> 
           <Dropdown item text="Kategoriler">
             <Dropdown.Menu>
-              <Dropdown.Item>Kategori Test 1</Dropdown.Item>
-              <Dropdown.Item>Kategori Test 2</Dropdown.Item>
-              <Dropdown.Item>Kategori Test 3</Dropdown.Item>
+              {categorys.map((categori) => (
+                  <Dropdown.Item>{categori.name}</Dropdown.Item>
+              ))}
+              
             </Dropdown.Menu>
           </Dropdown>
           <Menu.Item>
