@@ -11,7 +11,7 @@ export default function BlogCard() {
     let postService = new PostService();
     postService.getPost().then((result) => setPosts(result.data));
 
-  }, )
+  }, [])
 
   return (
     <div>
