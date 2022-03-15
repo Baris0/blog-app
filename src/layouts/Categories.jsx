@@ -22,18 +22,6 @@ const Categories = () => {
             Trendler
           </Menu.Item>
           </Link>
-          <Link to="/newests">
-            <Menu.Item name="news">
-              <Label>51</Label>
-              En yeniler
-            </Menu.Item>
-            </Link>
-          <Link to="/popular"> 
-          <Menu.Item name="likes">
-            <Label>1</Label>
-            En cok begenilenler
-          </Menu.Item>
-          </Link> 
           <Dropdown item text="Kategoriler">
             <Dropdown.Menu>
               {categorys.map((categori) => (

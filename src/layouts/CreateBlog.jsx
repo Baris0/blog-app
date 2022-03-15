@@ -1,22 +1,31 @@
-import React from "react";
-import { Container, Form } from "semantic-ui-react";
+import React from 'react'
+import { Form } from 'formik'
+import { Button } from 'semantic-ui-react'
 
 export default function CreateBlog() {
+
+    const initialValues = {
+        
+    }
+
+
   return (
     <div>
-      <Container>
         <Form>
-          <Form.Group widths="equal">
-            <Form.Input fluid label="Blog Konusu" placeholder="Blog Konusu" />
-            <Form.Select fluid label="Kategori" placeholder="..." />
-          </Form.Group>
-          <Form.Group inline>
-            <label></label>
-          </Form.Group>
-          <Form.TextArea label="" placeholder="..." />
-          <Form.Button>Gonder</Form.Button>
-        </Form>
-      </Container>
+        <Form.Group widths='equal'>
+          <Form.Input fluid label='baslik' placeholder='Baslik' />
+          <Form.Input fluid label='url' placeholder='url' />
+          <Form.Select
+            fluid
+            label='Kategori'
+            placeholder=''
+          />
+        </Form.Group>
+       
+        <Form.TextArea label='' placeholder='...' />
+       
+        <Button type='submit' color='green'>Gonder</Button>
+      </Form>
     </div>
-  );
+  )
 }

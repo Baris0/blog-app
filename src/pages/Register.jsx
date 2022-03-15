@@ -13,7 +13,7 @@ export default function Register() {
     email: "",
     name: "",
     password: "",
-    phoneNumber: "",
+    profilePic: "",
     surname: "",
   };
 
@@ -21,7 +21,7 @@ export default function Register() {
     email: Yup.string().required("E Mail girmek zorunludur!"),
     name: Yup.string().required("Isim girmek zorunludur!"),
     password: Yup.string().required("Sifre girmek zorunludur!"),
-    phoneNumber: Yup.string().required("Telefon numarasi girmek zorunludur!"),
+    profilePic: Yup.string().required("Fotograf url girmek zorunludur!"),
     surname: Yup.string().required("Soyisim girmek zorunludur!"),
   });
 
@@ -32,11 +32,11 @@ export default function Register() {
         validationSchema={schema}
         onSubmit={async (values) => {
           console.log(values.email);
-          await axios.post("http://localhost:8080/api/author/register", {
+          await axios.post("http://localhost:8080/api/reader/register", {
             email: values.email,
             name: values.name,
             password: values.password,
-            phoneNumber: values.phoneNumber,
+            profilePic: values.profilePic,
             surname: values.surname,
           });
         }}
@@ -70,9 +70,9 @@ export default function Register() {
             ></ErrorMessage>
           </FormField>
           <FormField>
-            <Field name="phoneNumber" placeholder="phoneNumber" />
+            <Field name="profilePic" placeholder="Fotograf Url" />
             <ErrorMessage
-              name="phoneNumber"
+              name="profilePic"
               render={(error) => (
                 <Label pointing basic color="red" content={error}></Label>
               )}
