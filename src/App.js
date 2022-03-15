@@ -2,13 +2,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
 import Newests from "./pages/Newests";
 import Trends from "./pages/Trends";
 import MostPopular from "./pages/MostPopular";
 import Navi from "./layouts/Navi";
 import Profile from "./pages/Profile";
 import Notifications from "./pages/Notifications";
+import Login from "./pages/Login";
 
 function App() {
   return (
