@@ -15,8 +15,8 @@ export default function Login() {
   };
 
   const schema = Yup.object({
-    email: Yup.string().required(""),
-    password: Yup.string().required(""),
+    email: Yup.string().required("Lutfen E mail adresinizi giriniz!"),
+    password: Yup.string().required("Lutfen sifrenizi giriniz!"),
   });
 
   return (
@@ -46,7 +46,7 @@ export default function Login() {
             ></ErrorMessage>
           </FormField>
           <FormField>
-            <Field name="password" placeholder="password" />
+            <Field type="password" name="password" placeholder="password" />
             <ErrorMessage
               name="password"
               render={(error) => (
