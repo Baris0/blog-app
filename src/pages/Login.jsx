@@ -1,42 +1,64 @@
 import axios from "axios";
-import React, { Component } from "react";
-import { Form } from "semantic-ui-react";
+import qs from "qs";
+import * as Yup from "yup";
+import { Formik } from "formik";
+import { Form } from "formik";
+import { Button, FormField } from "semantic-ui-react";
+import { ErrorMessage } from "formik";
+import { Field } from "formik";
+import { Label } from "semantic-ui-react";
 
-export default class Login extends Component{
+export default function Login() {
+  const initialValues = {
+    email: "",
+    password: "",
+  };
 
-handleSubmit = e => {
-  e.preventDefault();
+  const schema = Yup.object({
+    email: Yup.string().required(""),
+    password: Yup.string().required(""),
+  });
 
-  const data = {
-    email: this.username,
-    password: this.password
-  }
-
-  axios.post("http://localhost:8080/api/login", data)
-    .then(result => {
-      localStorage.setItem('token', result.data.token)
-    })
-
-    .catch((error) => {
-      console.log(error)
-    })
-}
-  render() {
-    return (
-      <div>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group widths="equal">
-            <Form.Input
-              type="email"
-              fluid
-              label="Kullanici Adi Veya E posta"
-              placeholder=""
-            />
-            <Form.Input type="password" fluid label="Sifre" placeholder="" />
-          </Form.Group>
-          <Form.Button>Giris</Form.Button>
+  return (
+    <div>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={(values) => {
+          axios({
+            method: "post",
+            url: "http://localhost:8080/api/login",
+            data: qs.stringify({
+              email: values.email,
+              password: values.password,
+            }),
+          });
+        }}
+      >
+        <Form className="ui form">
+          <FormField>
+            <Field name="email" placeholder="email" />
+            <ErrorMessage
+              name="email"
+              render={(error) => (
+                <Label pointing basic color="red" content={error}></Label>
+              )}
+            ></ErrorMessage>
+          </FormField>
+          <FormField>
+            <Field name="password" placeholder="password" />
+            <ErrorMessage
+              name="password"
+              render={(error) => (
+                <Label pointing basic color="red" content={error}></Label>
+              )}
+            ></ErrorMessage>
+          </FormField>
+          <Button type="submit" color="green">
+            Giris
+          </Button>
         </Form>
-      </div>
-    );
-  }
+      </Formik>
+    </div>
+  );
 }
