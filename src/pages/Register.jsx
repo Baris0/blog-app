@@ -1,4 +1,4 @@
-import { Form, FormField } from "semantic-ui-react";
+import { FormField } from "semantic-ui-react";
 import axios from "axios";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -6,6 +6,7 @@ import { Field } from "formik";
 import { ErrorMessage } from "formik";
 import { Label } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
+import { Form } from "formik";
 
 export default function Register() {
   const initialValues = {
@@ -29,8 +30,9 @@ export default function Register() {
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
-        onSubmit={(values) => {
-          axios.post("http://localhost:8080/api/author/register", {
+        onSubmit={async (values) => {
+          console.log(values.email);
+          await axios.post("http://localhost:8080/api/author/register", {
             email: values.email,
             name: values.name,
             password: values.password,
