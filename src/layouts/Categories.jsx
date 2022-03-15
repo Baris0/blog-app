@@ -10,7 +10,7 @@ const Categories = () => {
   useEffect(() => {
       let categoryService = new CategoryService();
       categoryService.getCategorys().then((result) => setCagorys(result.data))
-  })
+  }, [])
 
   return (
     <div>
