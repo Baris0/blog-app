@@ -10,12 +10,12 @@ import { Label } from "semantic-ui-react";
 
 export default function Login() {
   const initialValues = {
-    email: "",
+    username: "",
     password: "",
   };
 
   const schema = Yup.object({
-    email: Yup.string().required("Lutfen E mail adresinizi giriniz!"),
+    username: Yup.string().required("Lutfen E mail adresinizi giriniz!"),
     password: Yup.string().required("Lutfen sifrenizi giriniz!"),
   });
 
@@ -24,22 +24,24 @@ export default function Login() {
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
-        onSubmit={(values) => {
-          axios({
+        onSubmit={async(values) => {
+            const res = await axios({
             method: "post",
             url: "http://localhost:8080/api/login",
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
             data: qs.stringify({
-              email: values.email,
+              username: values.username,
               password: values.password,
             }),
-          });
+          }).then((response)  => {return response.data});
+          console.log(res)
         }}
       >
         <Form className="ui form">
           <FormField>
-            <Field name="email" placeholder="email" />
+            <Field name="username" placeholder="email" />
             <ErrorMessage
-              name="email"
+              name="username"
               render={(error) => (
                 <Label pointing basic color="red" content={error}></Label>
               )}
