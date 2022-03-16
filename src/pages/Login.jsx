@@ -7,7 +7,7 @@ import { Button, FormField } from "semantic-ui-react";
 import { ErrorMessage } from "formik";
 import { Field } from "formik";
 import { Label } from "semantic-ui-react";
-import { Cookies, useCookies } from "react-cookie";
+import {  useCookies } from "react-cookie";
 
 export default function Login() {
 
@@ -37,7 +37,10 @@ export default function Login() {
               username: values.username,
               password: values.password,
             }),
-          }).then((response)  => setCookie("access_token", response.data));
+          }).then((response)  =>{
+             setCookie("access_token", response.data.access_token)
+             setCookie("role",response.data.role)
+           });
           console.log(cookies)
         }}
       >

@@ -8,7 +8,7 @@ export default function Trends() {
   useEffect(() => {
     let postService = new PostService();
     postService.getTrendPost().then((result) => setTrendPosts(result.data));
-  });
+  },[]);
 
   return (
     <div>
