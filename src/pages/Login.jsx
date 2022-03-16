@@ -7,8 +7,12 @@ import { Button, FormField } from "semantic-ui-react";
 import { ErrorMessage } from "formik";
 import { Field } from "formik";
 import { Label } from "semantic-ui-react";
+import { Cookies, useCookies } from "react-cookie";
 
 export default function Login() {
+
+  const [cookies, setCookie, removeCookie] = useCookies([])
+
   const initialValues = {
     username: "",
     password: "",
@@ -25,7 +29,7 @@ export default function Login() {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={async(values) => {
-            const res = await axios({
+            await axios({
             method: "post",
             url: "http://localhost:8080/api/login",
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
@@ -33,8 +37,8 @@ export default function Login() {
               username: values.username,
               password: values.password,
             }),
-          }).then((response)  => {return response.data});
-          console.log(res)
+          }).then((response)  => setCookie("access_token", response.data));
+          console.log(cookies)
         }}
       >
         <Form className="ui form">
