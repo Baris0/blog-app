@@ -25,7 +25,7 @@ const Categories = () => {
           <Dropdown item text="Kategoriler">
             <Dropdown.Menu>
               {categorys.map((categori) => (
-                  <Dropdown.Item>{categori.name}</Dropdown.Item>
+                  <Dropdown.Item key={categori.id}>{categori.name}</Dropdown.Item>
               ))}
               
             </Dropdown.Menu>

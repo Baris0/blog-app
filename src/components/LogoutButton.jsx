@@ -1,13 +1,16 @@
 import React, { Fragment } from 'react'
 import { Button } from 'semantic-ui-react'
 import {  useCookies } from "react-cookie";
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { roleActions } from '../redux/store/role-slice';
+
 const LogoutButton = () => {
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
     const [cookies, setCookie, removeCookie] = useCookies([])
     const handleLogout =()=>{
         removeCookie("access_token");
         removeCookie("role")
+        dispatch(roleActions.removeRole())
     }
   return (
     <Fragment>
