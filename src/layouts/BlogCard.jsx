@@ -19,7 +19,7 @@ export default function BlogCard() {
         <GridRow columns={2}>
           <GridColumn width={3}>
             {posts.map((post) => (
-                <Card.Group>
+                <Card.Group key={post.id}>
                 <Link to="/blogText">
                   <Card
                     image={post.titlePicUrl}
